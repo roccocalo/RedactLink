@@ -7,14 +7,6 @@ Before sharing, an AI/NLP service scans for PII (emails, credit cards, IPs, name
 and physically redacts it. Sanitized files are shared via short-lived signed links.
 Solves real-world **Data Leakage** — a costly problem for enterprises.
 
-## Why This Gets You Hired at Big Tech
-
-- **System Design**: Presigned URL pattern bypasses the server on upload (classic interview topic)
-- **Security**: Zero-trust, SSE-KMS encryption, IAM policies, DDoS mitigation via rate limiting
-- **AI Engineering**: AI used as a pipeline worker for Data Loss Prevention, not a chatbot
-- **Cost**: Near-zero infra cost with enterprise-grade architecture
-- **Async Architecture**: Event-driven S3 → SQS → worker pattern demonstrates distributed systems knowledge
-
 ## Tech Stack
 
 | Layer | Technology |
