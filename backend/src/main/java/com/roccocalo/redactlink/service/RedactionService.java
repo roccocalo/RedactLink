@@ -16,11 +16,14 @@ public class RedactionService {
     );
 
     private final TextRedactionStrategy textStrategy;
-    // PdfRedactionStrategy and DocxRedactionStrategy injected in later phase
+    private final PdfRedactionStrategy pdfStrategy;
 
-    public byte[] redact(byte[] fileBytes, String contentType, List<Entity> entities) {
+    public byte[] redact(byte[] fileBytes, String contentType, String extractedText, List<Entity> entities) throws Exception {
         if (TEXT_TYPES.contains(contentType)) {
             return textStrategy.redact(fileBytes, entities);
+        }
+        if ("application/pdf".equals(contentType)) {
+            return pdfStrategy.redact(fileBytes, extractedText, entities);
         }
         throw new UnsupportedOperationException("No redaction strategy for contentType: " + contentType);
     }
