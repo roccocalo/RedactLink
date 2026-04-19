@@ -1,0 +1,27 @@
+CONTRATTO DI CONSULENZA INFORMATICA
+Data: 15 aprile 2026
+
+COMMITTENTE
+Ragione Sociale: Rossi Consulting S.r.l.
+Partita IVA: IT01234567897
+Sede legale: Via Garibaldi, 42, 20121 Milano MI
+PEC aziendale: rossi.consulting@pec.it
+Telefono: +39 02 87654321
+
+CONSULENTE
+Nome e Cognome: Marco Rossi
+Codice Fiscale: RSSMRC85M15F205J
+Indirizzo: Corso Buenos Aires, 45, 20124 Milano
+Cellulare: +39 333 1234567
+Email: marco.rossi@gmail.com
+PEC personale: marco.rossi@pec.it
+IBAN: IT60X0542811101000000123456
+Targa veicolo: AB123CD
+Patente di guida: U1A123456B
+
+OGGETTO DEL CONTRATTO
+Il consulente si impegna a erogare servizi di sviluppo software per il periodo
+gennaio-giugno 2026 per un compenso mensile di EUR 3.500,00.
+
+FIRMA
+Il presente contratto è firmato digitalmente dalle parti in data 15/04/2026.

@@ -15,7 +15,7 @@ public class TextRedactionStrategy {
         String text = new String(fileBytes, StandardCharsets.UTF_8);
 
         // Process in reverse order so replacements don't shift subsequent indices
-        List<Entity> sorted = entities.stream()
+        List<Entity> sorted = removeOverlaps(entities).stream()
                 .sorted(Comparator.comparingInt(Entity::getStartIndex).reversed())
                 .toList();
 
@@ -27,6 +27,19 @@ public class TextRedactionStrategy {
 
         text += buildAuditFooter(entities.size());
         return text.getBytes(StandardCharsets.UTF_8);
+    }
+
+    private List<Entity> removeOverlaps(List<Entity> entities) {
+        List<Entity> kept = new java.util.ArrayList<>();
+        for (Entity candidate : entities.stream()
+                .sorted(Comparator.comparingDouble(Entity::getScore).reversed())
+                .toList()) {
+            boolean overlaps = kept.stream().anyMatch(k ->
+                    candidate.getStartIndex() < k.getEndIndex() &&
+                    candidate.getEndIndex() > k.getStartIndex());
+            if (!overlaps) kept.add(candidate);
+        }
+        return kept;
     }
 
     private String buildAuditFooter(int redactedCount) {

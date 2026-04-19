@@ -1,0 +1,6 @@
+id,full_name,email,phone,credit_card,ip_address,address,notes
+1,John Smith,john.smith@acme.com,+1-555-867-5309,4111 1111 1111 1111,192.168.1.42,"123 Main St, New York NY 10001",VIP customer since 2020
+2,Sarah Johnson,sarah.j@company.org,+1-800-555-0199,5500 0000 0000 0004,10.0.0.15,"456 Oak Avenue, Los Angeles CA 90001",Flagged for review
+3,Robert Davis,r.davis@example.com,555-234-5678,3714 496353 98431,172.16.254.1,"789 Pine Road, Chicago IL 60601",Contact before shipping
+4,Emily Chen,emily.chen@startup.io,+1 (415) 555-2671,6011 1111 1111 1117,203.0.113.45,"321 Market Street, San Francisco CA 94105",Premium tier
+5,Michael Brown,m.brown@corp.net,+1-212-555-0187,3056 930902 5904,198.51.100.22,"654 Broadway, New York NY 10012",Pending verification

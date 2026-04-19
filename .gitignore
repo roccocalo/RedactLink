@@ -16,5 +16,10 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+# macOS
+.DS_Store
+
 CLAUDE.md
 docs/Learning_Notes.md
+.vscode/
+.idea/

@@ -10,8 +10,6 @@ services:
       retries: 5
 
   presidio-analyzer:
-    image: mcr.microsoft.com/presidio-analyzer:latest
+    build: ./presidio
     ports:
       - "5002:3000"
-    environment:
-      - PRESIDIO_ANALYZER_DOMAIN=0.0.0.0
