@@ -1,0 +1,30 @@
+2026-04-20 08:12:03.441 INFO  [main] c.example.auth.LoginService - User authentication started from IP 192.168.1.45
+2026-04-20 08:12:03.512 INFO  [main] c.example.auth.LoginService - Login successful for user marco.rossi@gmail.com
+2026-04-20 08:12:04.001 DEBUG [http-nio-8080-exec-1] c.example.api.UserController - Fetching profile for userId=4821, name=Marco Rossi
+2026-04-20 08:12:04.230 INFO  [http-nio-8080-exec-1] c.example.api.UserController - Profile loaded: email=marco.rossi@gmail.com phone=+39 02 4853 9901 address=Via Torino 14, Milano
+2026-04-20 08:13:11.009 WARN  [scheduler-1] c.example.billing.InvoiceJob - Payment overdue for customer Giulia Ferretti, CF=FRTGLI88D45F205X, amount=€340.00
+2026-04-20 08:13:11.450 INFO  [scheduler-1] c.example.billing.InvoiceJob - Sending reminder to giulia.ferretti@libero.it
+2026-04-20 08:14:02.881 ERROR [http-nio-8080-exec-3] c.example.order.OrderService - Order #ORD-20260420-9921 failed for customer Luca Bianchi, contact: l.bianchi@outlook.com
+2026-04-20 08:14:02.882 ERROR [http-nio-8080-exec-3] c.example.order.OrderService - Shipping address: Corso Buenos Aires 78, 20124 Milano, +39 333 912 4455
+2026-04-20 08:15:30.120 INFO  [http-nio-8080-exec-5] c.example.auth.SessionService - Session opened: user=john.carter@company.com IP=10.0.0.23
+2026-04-20 08:15:30.445 DEBUG [http-nio-8080-exec-5] c.example.auth.SessionService - Token issued for John Carter, role=ADMIN, expires=2026-04-20T09:15:30Z
+2026-04-20 08:16:44.003 INFO  [async-executor-2] c.example.notify.EmailDispatcher - Email queued to sarah.thompson@enterprise.io, subject="Account verification"
+2026-04-20 08:16:44.780 INFO  [async-executor-2] c.example.notify.EmailDispatcher - CC: compliance@enterprise.io, BCC: archive@enterprise.io
+2026-04-20 08:17:55.332 WARN  [main] c.example.security.AuditLogger - Accesso sospetto rilevato dall'indirizzo 203.0.113.77 per l'utente anna.conti@azienda.it
+2026-04-20 08:17:55.333 WARN  [main] c.example.security.AuditLogger - Tentativo di login fallito (3/5): utente=Anna Conti, codice fiscale=CNTANN90A41H501Z
+2026-04-20 08:18:10.201 INFO  [http-nio-8080-exec-7] c.example.crm.CustomerService - Nuovo cliente registrato: nome=Stefano De Luca, email=stefano.deluca@pec.it, P.IVA=09876543210
+2026-04-20 08:18:10.555 DEBUG [http-nio-8080-exec-7] c.example.crm.CustomerService - Indirizzo fatturazione: Piazza Navona 3, 00186 Roma, telefono=+39 06 6821 0034
+2026-04-20 08:19:22.008 INFO  [http-nio-8080-exec-2] c.example.payments.CardProcessor - Initiating payment for Emily Russo, card=4111 1111 1111 1111, amount=$129.99
+2026-04-20 08:19:22.990 INFO  [http-nio-8080-exec-2] c.example.payments.CardProcessor - Payment authorised, confirmation sent to emily.russo@mail.com
+2026-04-20 08:20:01.774 ERROR [retry-handler-1] c.example.integration.SapConnector - Connessione SAP fallita per operatore Roberto Marini (r.marini@corp.eu), riprogrammazione tra 60s
+2026-04-20 08:20:05.312 INFO  [http-nio-8080-exec-9] c.example.hr.EmployeeService - Scheda dipendente aggiornata: matricola=EMP-00312, nome=Francesca Gallo, CF=GLLFNC85M55G273W
+2026-04-20 08:20:05.900 DEBUG [http-nio-8080-exec-9] c.example.hr.EmployeeService - Contatti di emergenza: marito=Giorgio Gallo +39 347 881 2230, medico=dott.ssa Laura Vitali +39 055 234 7891
+2026-04-20 08:21:14.100 INFO  [main] c.example.audit.ComplianceReporter - Daily GDPR export triggered by admin user david.miller@infosec.org (IP: 172.16.0.5)
+2026-04-20 08:21:14.882 INFO  [main] c.example.audit.ComplianceReporter - Export includes records for 1,204 data subjects, written to s3://internal-reports/gdpr-2026-04-20.csv
+2026-04-20 08:22:33.441 WARN  [scheduler-3] c.example.billing.SubscriptionJob - Carta di credito in scadenza per cliente ID=8821 (Valentina Serra, v.serra@fastmail.it), numero=5500 0000 0000 0004
+2026-04-20 08:22:33.990 INFO  [scheduler-3] c.example.billing.SubscriptionJob - Notifica inviata a v.serra@fastmail.it e al referente commerciale pietro.esposito@azienda.it
+2026-04-20 08:23:50.001 INFO  [http-nio-8080-exec-11] c.example.api.ReportController - Report richiesto da utente=alice.nguyen@techco.com, ruolo=ANALYST, IP=10.0.1.88
+2026-04-20 08:23:51.340 DEBUG [http-nio-8080-exec-11] c.example.api.ReportController - Query params: dateFrom=2026-01-01, dateTo=2026-04-20, customerId=CUST-7731
+2026-04-20 08:25:00.009 INFO  [watchdog-1] c.example.health.HealthMonitor - All services healthy. Uptime=13d 4h 12m
+2026-04-20 08:25:00.010 INFO  [watchdog-1] c.example.health.HealthMonitor - On-call engineer: Michael Torres, pager=m.torres@ops.io, phone=+1 415 930 2271
+prova prova

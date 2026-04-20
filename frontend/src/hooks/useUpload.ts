@@ -6,8 +6,22 @@ const ACCEPTED_MIME = new Set([
   'application/pdf',
   'text/plain',
   'text/csv',
+  'text/x-log',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 ]);
+
+const EXT_MIME: Record<string, string> = {
+  '.log': 'text/x-log',
+  '.txt': 'text/plain',
+  '.csv': 'text/csv',
+};
+
+function resolveContentType(file: File): string {
+  if (file.type) return file.type;
+  const ext = file.name.slice(file.name.lastIndexOf('.')).toLowerCase();
+  return EXT_MIME[ext] ?? '';
+}
+
 const MAX_SIZE = 50 * 1024 * 1024;
 
 async function sha256hex(file: File): Promise<string> {
@@ -46,8 +60,9 @@ export function useUpload() {
   const upload = useCallback(async (file: File) => {
     esRef.current?.close();
 
-    if (!ACCEPTED_MIME.has(file.type)) {
-      setState({ ...INITIAL, status: 'FAILED', error: `Unsupported file type: ${file.type || 'unknown'}` });
+    const contentType = resolveContentType(file);
+    if (!ACCEPTED_MIME.has(contentType)) {
+      setState({ ...INITIAL, status: 'FAILED', error: `Unsupported file type: ${contentType || 'unknown'}` });
       return;
     }
     if (file.size > MAX_SIZE) {
@@ -63,7 +78,7 @@ export function useUpload() {
       const response = await api.requestUploadUrl({
         filename: file.name,
         size: file.size,
-        contentType: file.type,
+        contentType,
         sha256,
       });
 
@@ -111,7 +126,11 @@ export function useUpload() {
 
       // Skip PUT if this is a duplicate in-flight (uploadUrl absent)
       if (response.uploadUrl) {
-        await fetch(response.uploadUrl, { method: 'PUT', body: file });
+        await fetch(response.uploadUrl, {
+          method: 'PUT',
+          body: file,
+          headers: { 'Content-Type': contentType },
+        });
       }
     } catch (err) {
       const e = err as Error & { status?: number };
