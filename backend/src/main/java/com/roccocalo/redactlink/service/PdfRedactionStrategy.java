@@ -105,9 +105,9 @@ public class PdfRedactionStrategy {
     }
 
     private PDRectangle toRect(float minX, float baselineY, float maxX, float h) {
-        // baseline is top of most glyphs in PDFBox direction-adjusted coords;
-        // extend down by full height and add 1pt padding on all sides
-        return new PDRectangle(minX - 1f, baselineY - h - 1f, maxX - minX + 2f, h + 2f);
+        // baselineY is in PDF space (Y from bottom). Text sits on the baseline and
+        // extends upward by ~h (ascenders) and slightly downward by ~0.25h (descenders).
+        return new PDRectangle(minX - 1f, baselineY - h * 0.25f - 1f, maxX - minX + 2f, h * 1.25f + 2f);
     }
 
     private record CharInfo(int pageIndex, float x, float baselineY, float width, float height) {}
@@ -120,14 +120,19 @@ public class PdfRedactionStrategy {
 
         @Override
         protected void writeString(String str, List<TextPosition> positions) throws IOException {
+            // writeString Y coords are in stripper screen-space (Y=0 at top, increases down).
+            // PDPageContentStream.addRect expects PDF user-space (Y=0 at bottom, increases up).
+            // Convert once here so all stored coords are in PDF space.
+            float pageTopY = getCurrentPage().getCropBox().getUpperRightY();
             for (TextPosition tp : positions) {
                 String unicode = tp.getUnicode();
                 if (unicode == null) continue;
+                float pdfY = pageTopY - tp.getYDirAdj();
                 for (int i = 0; i < unicode.length(); i++) {
                     chars.add(new CharInfo(
                             getCurrentPageNo() - 1,
                             tp.getXDirAdj(),
-                            tp.getYDirAdj(),
+                            pdfY,
                             tp.getWidthDirAdj(),
                             tp.getHeightDir()));
                     builtText.append(unicode.charAt(i));

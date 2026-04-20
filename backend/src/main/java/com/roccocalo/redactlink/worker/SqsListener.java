@@ -6,6 +6,7 @@ import com.roccocalo.redactlink.service.SanitizationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -29,6 +30,7 @@ public class SqsListener {
     private final S3Client s3Client;
     private final SanitizationService sanitizationService;
     private final ObjectMapper objectMapper;
+    private final StringRedisTemplate redisTemplate;
 
     @Value("${aws.sqs.queue-url}")
     private String queueUrl;
@@ -92,6 +94,14 @@ public class SqsListener {
             String fileId = objectKey.split("/")[0];
 
             log.info("Received S3 event: fileId={} objectKey={}", fileId, objectKey);
+
+            // Idempotency guard: SQS delivers at-least-once. If this fileId was already
+            // processed (sanitized: key exists), the raw file is gone — skip to avoid a
+            // NoSuchKey error that would pin the message in the queue until the DLQ.
+            if (redisTemplate.opsForValue().get("sanitized:" + fileId) != null) {
+                log.info("fileId={} already processed, dropping duplicate SQS message", fileId);
+                continue;
+            }
 
             byte[] fileBytes = s3Client.getObjectAsBytes(GetObjectRequest.builder()
                     .bucket(rawBucket)

@@ -13,7 +13,7 @@ public class ExtractionService {
 
     public String extract(byte[] fileBytes, String contentType) throws IOException {
         return switch (contentType) {
-            case "text/plain", "text/csv" -> new String(fileBytes, StandardCharsets.UTF_8);
+            case "text/plain", "text/csv", "text/x-log" -> new String(fileBytes, StandardCharsets.UTF_8);
             case "application/pdf"        -> extractPdfText(fileBytes);
             default                       -> new String(fileBytes, StandardCharsets.UTF_8);
         };
