@@ -23,6 +23,7 @@ interface UploadState {
   filename: string | null;
   downloadUrl: string | null;
   redactedCount: number | null;
+  alreadySanitized: boolean;
   error: string | null;
 }
 
@@ -32,6 +33,7 @@ const INITIAL: UploadState = {
   filename: null,
   downloadUrl: null,
   redactedCount: null,
+  alreadySanitized: false,
   error: null,
 };
 
@@ -72,6 +74,7 @@ export function useUpload() {
           fileId: response.fileId,
           downloadUrl: response.downloadUrl ?? null,
           redactedCount: null,
+          alreadySanitized: true,
         }));
         return;
       }

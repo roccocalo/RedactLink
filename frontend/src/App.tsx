@@ -12,6 +12,7 @@ function App() {
     filename,
     downloadUrl,
     redactedCount,
+    alreadySanitized,
     error,
     upload,
     reset,
@@ -38,7 +39,7 @@ function App() {
         {showResults && (
           <div className="results-grid">
             <FilePreview filename={filename} />
-            <RedactionReport redactedCount={redactedCount} filename={filename} />
+            <RedactionReport redactedCount={redactedCount} filename={filename} alreadySanitized={alreadySanitized} />
             <SharePanel downloadUrl={downloadUrl} onRefresh={refreshLink} />
           </div>
         )}

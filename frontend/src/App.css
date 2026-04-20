@@ -356,6 +356,30 @@
   line-height: 1.5;
 }
 
+.report-cached {
+  display: flex;
+  flex-direction: column;
+}
+
+.cached-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  width: fit-content;
+}
+
+.cached-badge::before {
+  content: '↩';
+  font-size: 13px;
+}
+
 /* ── Share Panel Card ─────────────────────────────────── */
 
 .share-sub {
