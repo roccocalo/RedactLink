@@ -38,7 +38,7 @@ public class SanitizationService {
         redisTemplate.opsForValue().set("status:" + fileId, "PROCESSING", Duration.ofHours(24));
         try {
             // Phase 1 — extract plain text
-            String extractedText = extractionService.extract(fileBytes);
+            String extractedText = extractionService.extract(fileBytes, contentType);
             log.info("fileId={} extracted {} chars contentType={}", fileId, extractedText.length(), contentType);
 
             // Phase 2 — detect PII entities
