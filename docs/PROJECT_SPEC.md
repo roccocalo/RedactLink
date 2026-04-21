@@ -2,7 +2,7 @@
 
 ## Problem Statement
 
-Enterprise platform for uploading sensitive documents (logs, text, CSV, PDF, DOCX).
+Enterprise platform for uploading sensitive documents (logs, text, CSV, PDF).
 Before sharing, an AI/NLP service scans for PII (emails, credit cards, IPs, names)
 and physically redacts it. Sanitized files are shared via short-lived signed links.
 Solves real-world **Data Leakage** — a costly problem for enterprises.
@@ -20,7 +20,7 @@ Solves real-world **Data Leakage** — a costly problem for enterprises.
 | PII Detection | Microsoft Presidio analyzer (Docker sidecar, port 5002) |
 | PDF Redaction | Apache PDFBox 3 (bounding-box → black rectangles) |
 | Text/CSV/Log Redaction | Java String API (index-based replacement) |
-| DOCX Redaction | Apache POI (paragraph-run redistribution) |
+| DOCX Redaction | Apache POI (paragraph-run redistribution) // Future implementation|
 | Real-time Updates | Server-Sent Events (SSE) |
 
 ## Data Flows
@@ -70,7 +70,7 @@ S3 (raw-uploads)  →  SQS  →  Spring Boot SQS Listener
                               │         Replace each range: text[start:end] → [REDACTED_TYPE]
                               │         Re-encode as UTF-8 bytes, same file extension
                               │
-                              └─ DOCX → DocxRedactionStrategy
+                              └─ DOCX → DocxRedactionStrategy // Future implementation
                                         Apache POI XWPFDocument
                                         Per paragraph: concatenate runs → replace → redistribute
                                         into first run (cross-run split handled correctly)
@@ -96,7 +96,7 @@ React  →  POST /api/v1/links/{fileId} {expiryMinutes, maxDownloads}
 | PDF | `application/pdf` | PDFBox bounding-box rectangles | ✅ |
 | Plain text / Log | `text/plain` | Index-based string replacement | ✅ |
 | CSV | `text/csv` | Index-based string replacement | ✅ |
-| DOCX | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` | Apache POI (paragraph-run redistribution) | ✅ |
+| DOCX | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` | Apache POI (paragraph-run redistribution) | ❌ out of scope |
 | XLSX, PPTX, etc. | various | — | ❌ out of scope |
 
 DOCX is rejected at upload validation with HTTP 415. The three-phase pipeline

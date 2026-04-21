@@ -28,14 +28,13 @@ public class PdfRedactionStrategy {
             Map<Integer, List<PDRectangle>> rectsByPage = new HashMap<>();
             for (Entity entity : entities) {
                 String entityText = extractedText.substring(entity.getStartIndex(), entity.getEndIndex());
-                String searchKey = entityText.replaceAll("\\s+", "");
-                if (searchKey.isEmpty()) continue;
+                if (entityText.isBlank()) continue;
 
                 String builtText = collector.builtText.toString();
-                int idx = builtText.indexOf(searchKey);
+                int idx = builtText.indexOf(entityText);
                 while (idx >= 0) {
-                    gatherRects(collector.chars, idx, searchKey.length(), rectsByPage);
-                    idx = builtText.indexOf(searchKey, idx + 1);
+                    gatherRects(collector.chars, idx, entityText.length(), rectsByPage);
+                    idx = builtText.indexOf(entityText, idx + 1);
                 }
             }
 
@@ -139,6 +138,30 @@ public class PdfRedactionStrategy {
                 }
             }
             super.writeString(str, positions);
+        }
+
+        // PDFTextStripper emits synthetic word/line separators via these methods rather than
+        // writeString(), so they never reach our override above. We mirror them into builtText
+        // with zero-width CharInfos so that builtText stays in sync with getText() output —
+        // which is what ExtractionService passes to Presidio for entity offset computation.
+        @Override
+        protected void writeWordSeparator() throws IOException {
+            appendSeparator(getWordSeparator());
+            super.writeWordSeparator();
+        }
+
+        @Override
+        protected void writeLineSeparator() throws IOException {
+            appendSeparator(getLineSeparator());
+            super.writeLineSeparator();
+        }
+
+        private void appendSeparator(String sep) {
+            int page = Math.max(0, getCurrentPageNo() - 1);
+            for (int i = 0; i < sep.length(); i++) {
+                chars.add(new CharInfo(page, 0, 0, 0, 0));
+                builtText.append(sep.charAt(i));
+            }
         }
     }
 }

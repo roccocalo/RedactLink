@@ -1,0 +1,35 @@
+[REDACTED_DATE_TIME] 08:12:03.441 INFO  [main] c.example.auth.LoginService - User authentication started from IP [REDACTED_IP_ADDRESS]
+[REDACTED_DATE_TIME] INFO  [main] c.example.auth.LoginService - Login successful for user [REDACTED_EMAIL_ADDRESS]
+[REDACTED_DATE_TIME] DEBUG [http-nio-8080-exec-1] c.example.api.UserController - Fetching profile for userId=4821, name=[REDACTED_PERSON]
+[REDACTED_DATE_TIME] 08:12:04.230 INFO  [http-nio-8080-exec-1] c.example.api.[REDACTED_PERSON] loaded: [REDACTED_EMAIL_ADDRESS] phone=[REDACTED_IT_PHONE_NUMBER] address=Via Torino 14, [REDACTED_LOCATION]
+[REDACTED_DATE_TIME] 08:13:11.009 WARN  [scheduler-1] c.example.billing.InvoiceJob - Payment overdue for customer [REDACTED_PERSON], CF=FRTGLI88D45F205X, amount=â‚¬340.00
+[REDACTED_DATE_TIME] INFO  [scheduler-1] c.example.billing.InvoiceJob - Sending reminder to [REDACTED_EMAIL_ADDRESS]
+[REDACTED_DATE_TIME] 08:14:02.881 ERROR [http-nio-8080-exec-3] c.example.order.OrderService - Order #ORD-20260420-9921 failed for customer [REDACTED_PERSON], contact: [REDACTED_EMAIL_ADDRESS]
+[REDACTED_DATE_TIME] 08:14:02.882 ERROR [http-nio-8080-exec-3] c.example.order.OrderService - Shipping address: [REDACTED_PERSON], 20124 [REDACTED_LOCATION], [REDACTED_IT_PHONE_NUMBER]
+[REDACTED_DATE_TIME] 08:15:30.120 INFO  [http-nio-8080-exec-5] c.example.auth.SessionService - Session opened: [REDACTED_EMAIL_ADDRESS] IP=[REDACTED_IP_ADDRESS]
+[REDACTED_DATE_TIME] 08:15:30.445 DEBUG [http-nio-8080-exec-5] c.example.auth.SessionService - Token issued for [REDACTED_PERSON], role=ADMIN, expires=[REDACTED_DATE_TIME]
+[REDACTED_DATE_TIME] INFO  [async-executor-2] c.example.notify.EmailDispatcher - Email queued to [REDACTED_EMAIL_ADDRESS], subject="Account verification"
+[REDACTED_DATE_TIME] 08:16:44.780 INFO  [async-executor-2] c.example.notify.EmailDispatcher - CC: [REDACTED_EMAIL_ADDRESS], BCC: [REDACTED_EMAIL_ADDRESS]
+[REDACTED_DATE_TIME] WARN  [main] c.example.security.AuditLogger - Accesso sospetto rilevato dall'indirizzo 203.0.113.77 per l'utente [REDACTED_EMAIL_ADDRESS]
+[REDACTED_DATE_TIME] 08:17:55.333 WARN  [main] c.example.security.AuditLogger - Tentativo di login fallito (3/5): utente=[REDACTED_PERSON], codice fiscale=CNTANN90A41H501Z
+[REDACTED_DATE_TIME] 08:18:10.201 [REDACTED_NRP]  [http-nio-8080-exec-7] c.example.crm.CustomerService - Nuovo cliente registrato: [REDACTED_PERSON][REDACTED_PERSON], [REDACTED_EMAIL_ADDRESS], P.IVA=09876543210
+[REDACTED_DATE_TIME] DEBUG [http-nio-8080-exec-7] c.example.crm.CustomerService - [REDACTED_LOCATION] fatturazione: [REDACTED_IT_ADDRESS], 00186 [REDACTED_LOCATION], telefono=[REDACTED_IT_PHONE_NUMBER]
+[REDACTED_DATE_TIME] INFO  [http-nio-8080-exec-2] c.example.payments.CardProcessor - Initiating payment for [REDACTED_PERSON], card=[REDACTED_CREDIT_CARD], amount=$129.99
+[REDACTED_DATE_TIME] 08:19:22.990 INFO  [http-nio-8080-exec-2] c.example.payments.CardProcessor - Payment authorised, confirmation sent to [REDACTED_EMAIL_ADDRESS]
+[REDACTED_DATE_TIME] 08:20:01.774 ERROR [retry-handler-1] c.example.integration.SapConnector - Connessione SAP fallita per operatore [REDACTED_PERSON] ([REDACTED_EMAIL_ADDRESS]), riprogrammazione tra 60s
+[REDACTED_DATE_TIME] 08:20:05.312 INFO  [http-nio-8080-exec-9] c.example.hr.EmployeeService - Scheda dipendente aggiornata: matricola=EMP-00312, nome=[REDACTED_PERSON], CF=GLLFNC85M55G273W
+[REDACTED_DATE_TIME] 08:20:05.900 DEBUG [http-nio-8080-exec-9] c.example.hr.EmployeeService - Contatti di emergenza: marito=[REDACTED_PERSON] [REDACTED_IT_PHONE_NUMBER], medico=dott.ssa [REDACTED_PERSON] [REDACTED_IT_PHONE_NUMBER]
+[REDACTED_DATE_TIME] 08:21:14.100 INFO  [main] c.example.audit.ComplianceReporter - Daily GDPR export triggered by admin user [REDACTED_EMAIL_ADDRESS] (IP: [REDACTED_IP_ADDRESS])
+[REDACTED_DATE_TIME] INFO  [main] c.example.audit.ComplianceReporter - Export includes records for 1,204 data subjects, written to s3://internal-reports/[REDACTED_DATE_TIME]-20.csv
+[REDACTED_DATE_TIME] 08:22:33.441 WARN  [scheduler-3] c.example.billing.SubscriptionJob - Carta di credito in scadenza per cliente ID=8821 ([REDACTED_PERSON], [REDACTED_EMAIL_ADDRESS]), numero=[REDACTED_CREDIT_CARD]
+[REDACTED_DATE_TIME] INFO  [scheduler-3] c.example.billing.SubscriptionJob - Notifica inviata a [REDACTED_EMAIL_ADDRESS] e al referente commerciale [REDACTED_EMAIL_ADDRESS]
+[REDACTED_DATE_TIME] INFO  [http-nio-8080-exec-11] c.example.api.ReportController - Report richiesto da [REDACTED_EMAIL_ADDRESS], ruolo=ANALYST, IP=[REDACTED_IP_ADDRESS]
+[REDACTED_DATE_TIME] 08:23:51.340 DEBUG [http-nio-8080-exec-11] c.example.api.ReportController - Query params: dateFrom=[REDACTED_DATE_TIME], dateTo=[REDACTED_DATE_TIME], customerId=CUST-7731
+[REDACTED_DATE_TIME] 08:25:00.009 INFO  [watchdog-1] c.example.health.HealthMonitor - All services healthy. Uptime=13d 4h 12m
+[REDACTED_DATE_TIME] 08:25:00.010 INFO  [watchdog-1] c.example.health.HealthMonitor - On-call engineer: [REDACTED_PERSON], [REDACTED_EMAIL_ADDRESS], phone=[REDACTED_PHONE_NUMBER]
+prova prova
+
+# --- REDACTION REPORT ---
+# Sanitized-By: ZeroTrust-Engine-v1
+# Sanitized-At: 2026-04-21T17:57:17.456425Z
+# Redacted-Count: 87
